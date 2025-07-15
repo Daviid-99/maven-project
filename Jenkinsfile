@@ -13,12 +13,20 @@ pipeline {
             post {
                 success {
                     recordIssues(tools: [pmdParser(pattern: '**/pmd.xml')])
+    stage('Compile Code') {
+    steps {
+        echo 'Running mvn compile...'
+        sh '/opt/maven/bin/mvn compile'
                 }
             }
         }
         stage('Package Application') {
             steps {
                 sh '/opt/maven/bin/mvn package'
+    stage('Compile Code') {
+    steps {
+        echo 'Running mvn compile...'
+        sh '/opt/maven/bin/mvn compile'
             }
         }
     }
